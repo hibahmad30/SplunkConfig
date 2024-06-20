@@ -1,5 +1,5 @@
 <h1>Unified Log Management Solution with Splunk Enterprise</h1>
 
-In progress! 
+This project is currently in progress. Here is a high-level architecture diagram of the build:  
 
-https://i.imgur.com/qmPh1bq.png
+<img src="https://i.imgur.com/qmPh1bq.png" alt="Architecture Diagram"/>
