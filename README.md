@@ -66,6 +66,15 @@ We will now install Splunk Universal Forwarder and Sysmon on both our Windows 10
 <img src="https://i.imgur.com/t0CmsPG.png" alt="Confirm Configuration" height=70% width=70%/>
 <br/>
 <br/>
+Once all three machines have been installed and configured, create a NAT network in VirtualBox, and add all three machines to this NAT network: 
+<br/>
+<br/>
+<img src="https://i.imgur.com/ZkEOUDu.png" alt="Create NAT Network" height=70% width=70%/>
+<br/>
+<br/>
+<img src="https://i.imgur.com/xcUBjLW.png" alt="Add Machines to Network" height=70% width=70%/>
+<br/>
+<br/>
 In the Windows client machine, navigate to your preferred web browser and type the IP address of the Splunk server with ':8000' appeneded - this is added because Splunk listens on port 8000. Proceed by logging into Splunk in another tab, and download Splunk Universal Forwarder which can be found by navigating <a href="https://www.splunk.com/en_us/download/universal-forwarder.html?utm_campaign=google_amer_en_search_brand&utm_source=google&utm_medium=cpc&utm_content=Uni_Forwarder_Demo&utm_term=splunk%20universal%20forwarder&device=c&_bt=471686934615&_bm=p&_bn=g&gad_source=1&gclid=Cj0KCQjwsuSzBhCLARIsAIcdLm4oJ2ShpMfo74w6W0IWSqvvsrLsYjWbWxiPR90PO0CMyaDZLkiOMV4aAqQcEALw_wcB">here</a>. While that is installing, navigate to the following link to download Sysmon on the Windows 10 client machine: https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon. 
 <br/>
 <br/>
