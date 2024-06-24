@@ -112,9 +112,9 @@ Once this is configured, use the search ‘index=endpoint’ in Splunk to test t
  <img src="https://i.imgur.com/c75ddnz.png" alt="Splunk Confirmation"/>
 
 <h2>Install Active Directory:</h2>
-*In progess*
+*In progress*
 <h2>Key takeaways:</h2>
-*In progess*
+*In progress*
 <p align="center">
 <!--
  ```diff
