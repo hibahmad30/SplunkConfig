@@ -78,88 +78,34 @@ In the Windows client machine, navigate to your preferred web browser and type t
 <img src="https://i.imgur.com/MIvnOGN.png" alt="Install Sysmon" height=70% width=70%/>
 <br/>
 <br/>
-In the ‘Basic SAML Configuration’ section, enter placeholder URLs for ‘Identifier’ and ‘Reply URL’, and proceed to save the configuration. Select 'Download for Certificate (Base64)' in the SAML Signing Certificate area to download the certificate to your computer, which will be required for the next steps. 
+Once both Splunk Universal Forwarder and Sysmon have been installed, navigate to the following path in the system's 'C://' drive:  'Program Files > SplunkUniversalForwarder > etc > system > default'. The 'inputs.conf' file is located in this folder. This file must also be duplicated in the following path: 'Program Files > SplunkUniversalForwarder > etc > system > local'. To do this, run 'Notepad' as an administrator and create the 'inputs.conf' file with the following content, ensuring to save the file to the 'local' directory: 
+ <br/>
+ <br/>
+ <img src="https://i.imgur.com/cHem22Y.png" alt="Inputs File"/>
+  <br/>
+  <br/>
+Be sure to restart the 'SplunkForwarder' service in Windows Services once the file has been added to the 'local' directory. Now that Splunk Universal Forwarder and Sysmon have been downloaded on the Windows 10 client machine, repeat the same process in the Windows Server 2019 VM. 
 
-<h2>Mapping Microsoft Entra ID Attributes to Okta Attributes</h2> 
+<h2>Test Splunk Forwarding Configuration</h2> 
  <p align="center">
-SAML claims are pieces of information about a user that are shared between different systems to help with logging in and accessing services, such as their name or email address. We will be editing our attributes and claims, which is essentially what information we want to send to Okta for authentication. 
+Once  Splunk Universal Forwarder and Sysmon have been installed on both machines, login to Splunk Enterprise on both the Windows 10 client and Windows Server machines, using the IP address of the Splunk server and port 8000. Once logged in, navigate to: 'Settings > Indexes > New Index' and create a new index called 'endpoint'. Then,  we will setup the Splunk server to receive data by navigating to: 'Settings > Forwarding and receiving > Configure receiving > New receiving port', and type the port ‘9997’. 
  <br/>
  <br/>
- <img src="https://i.imgur.com/Pzmbstz.png" alt="Attributes and Claims"/>
+ <img src="https://i.imgur.com/10PDKcY.png" alt="Splunk Enterprise Login"/>
   <br/>
   <br/>
-In addition to the default claims, we will add 'company name' and 'telephone number': 
+ <img src="https://i.imgur.com/scZaQ8n.png" alt="Configure Receiving Port"/>
+ <br/>
+ <br/>
+Once this is configured, use the search ‘index=endpoint’ in Splunk to test that it is working correctly. There should be two hosts: one for the client machine, and one for the Windows Server machine: 
 <br/>
  <br/>
- <img src="https://i.imgur.com/c3QstfC.png" alt="Additional Claims"/>
- <br/>
- <br/>
-Return back to Okta, and navigate to SAML Certifications > Edit > New Certificate. Enter the following values to update the placeholders: the 'IdP Issuer URI' is the 'Microsoft Entra Identifier', the 'IdP Single Sign-On URL' is the 'Login URL', and the 'IdP Signature Certificate' is the 'Base64 download'. 
-<br/>
- <br/>
- <img src="https://i.imgur.com/DR3tYq1.png" alt="SAML Certificate"/>
- <br/>
- <br/>
- <img src="https://i.imgur.com/peyTXNw.png" alt="SAML Values"/>
-  <br/>
- <br/>
- Be sure to make note of the values above. The 'Assertion Consumer Service URL' will be the 'Reply URL in Azure', and the 'Audience URI' will be the 'Identity Entity ID' in Azure.  
-<br/>
-<br/>
-In Entra ID, update the placeholder values: 
-<br/>
-<br/>
-<img src="https://i.imgur.com/lDoz3p7.png" alt="SAML Configuration Update"/>
- <br/>
- <br/>
-Back in Okta, navigate to: Edit profile and mappings > Mappings. We will then unmap all attributes except 'username'. 
-<br/>
-<br/>
-<img src="https://i.imgur.com/trmCk9u.png" alt="Unmap Attributes"/>
- <br/>
- <br/>
-We will then navigate to 'Custom', and proceed to delete and recreate the attributes. For the attribute mapping, I will be referencing the following Okta documentation: https://help.okta.com/en-us/content/topics/provisioning/azure/azure-map-attributes.htm. Once the attributes are created, we will proceed with updating the mappings: 
- <br/>
- <br/>
-<img src="https://i.imgur.com/nzHv3uy.png" alt="Create Mappings"/>
-<br />
-<br />
- <img src="https://i.imgur.com/r36IKV9.png" alt="Mapping Attributes"/>
- <br />
-<br />
-We will test the authentication by first navigating to our Okta application in Entra ID and assigning users to the application: Manage > users and groups > Add user/group 
-<br />
-<br />
-<img src="https://i.imgur.com/519WGJ6.png" alt="Assign Users"/>
-<br />
-<br />
-We are now ready to test the authentication! Navigate to Single sign-on > Test. 
-<br />
-<br />
-<img src="https://i.imgur.com/XC7Yhjs.png" alt="Test the SSO"/>
-<br />
-<br />
-<img src="https://i.imgur.com/ytzqWAk.png" alt="SSO Login"/>
-<br />
-<br />
-For advanced testing and troubleshooting, you may optionally download the 'My Apps Secure Sign-in Extension' Chrome extension. As demonstrated below, we successfully authenticated!
-<br />
-<br />
-<img src="https://i.imgur.com/fIbnlYn.png" alt="Successful SSO"/>
+ <img src="https://i.imgur.com/c75ddnz.png" alt="Splunk Confirmation"/>
+
+<h2>Install Active Directory:</h2>
+*In progess*
 <h2>Key takeaways:</h2>
-This project focuses on integrating federation between Microsoft Entra ID and Okta to create a seamless and secure authentication experience across hybrid environments. Federation in this context means connecting these systems so that users can log in once and gain seamless access to resources managed by either platform. This integration simplifies the authentication process, enhances security, and improves user experience across hybrid IT environments. The process begins with the essential step of setting up a "break-glass" account in Entra ID, an emergency backup to ensure continuous access even if primary authentication methods fail. Entra ID is then configured to act as the primary identity provider for Okta by utilizing the SAML 2.0 protocol. 
-<br/>
-<br/>
-This involves establishing a secure communication link between Azure and Okta through the creation of an Okta enterprise application in Entra ID. The integration involves the setup of SAML claims, which define and map user attributes such as name, email, company name, and telephone number. These claims are fundamental in identifying and authenticating users across both systems. The final step in the implementation is thorough testing and validation to confirm that users can successfully log in to Okta applications using their Entra ID credentials.
-<br/>
-<br/>
-Implementing federation between Azure and Okta offers significant benefits such as enhancing user experience by enabling Single Sign-On (SSO), allowing users to log in once and access multiple systems without repeated authentication. This streamlines the process and reduces the frustration of managing multiple passwords. From an administrative perspective, federation simplifies centralized management of user identities and access rights, reducing the overhead for IT teams. 
-<br/>
-<br/>
-Federation is particularly valuable in several use cases such as for organizations operating in hybrid environments, where a mix of on-premises and cloud-based resources needs unified access management. It also facilitates secure cross-organizational collaboration, allowing external partners to access shared resources using their own identity systems. As companies expand their IT infrastructure, federation supports scalable identity solutions by seamlessly integrating multiple identity providers. 
-<br/>
-<br/>   
-Additionally, it aids in regulatory compliance by offering a centralized, auditable log of user access across all systems. Key terms like federation, SAML, identity provider, attributes and claims, and break-glass accounts play crucial roles in understanding this project. By combining the strengths of Microsoft Entra ID and Okta through federation, this project creates a unified and efficient identity management solution that simplifies and secures user access to diverse systems.
+*In progess*
 <p align="center">
 <!--
  ```diff
