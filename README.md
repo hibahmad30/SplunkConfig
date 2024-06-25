@@ -60,7 +60,7 @@ We will then navigate back to our Ubuntu server and create a directory called â€
 We will now install Splunk Universal Forwarder and Sysmon on both our Windows 10 client machine and our Active Directory server. Prior to this step, ensure that you have two VM instances configured for both Windows 10 and Windows Server 2019. Also, configure a static IP address for both machines to prevent IP conflicts, and confirm the configuration using the 'ipconfig' commmand. 
 <br/>
 <br/>
-<img src="https://i.imgur.com/iBArEzk.png" alt="IPv4 Configuration" height=50% width=50%/>
+<img src="https://i.imgur.com/7nfTqFp.png" alt="IPv4 Configuration" height=50% width=50%/>
 <br/>
 <br/>
 <img src="https://i.imgur.com/t0CmsPG.png" alt="Confirm Configuration" height=70% width=70%/>
