@@ -36,7 +36,7 @@ We will then start up the VM instance and proceed with the installation of Ubunt
 <img src="https://i.imgur.com/mkvSwf7.png" alt="Update Packages" height=85% width=85%/> 
 <br/>
 <br/>
-On our host machine, we will download Splunk Enterprise 9.2.1, and in our VirtualBox settings for the Ubuntu instance, add a shared folder with path of Splunk download: 
+On our host machine, we will download Splunk Enterprise 9.2.1, and in our VirtualBox settings for the Ubuntu instance, add a shared folder with the path of the Splunk download: 
 <br/> 
 <br/>
 <img src="https://i.imgur.com/2SJYZ8s.png" alt="Download Splunk Enterprise" height=85% width=85%/>
@@ -45,7 +45,7 @@ On our host machine, we will download Splunk Enterprise 9.2.1, and in our Virtua
 <img src="https://i.imgur.com/d7ZIe7K.png" alt="Add Shared Folder" height=70% width=70%/>
 <br/>
 <br/>
-We will then navigate back to our Ubuntu server and create a directory called ‘share’ using ‘mkdir share’ command. Then. we will mount the directory to the Splunk download folder, and install Splunk using the following commands: 
+We will then navigate back to our Ubuntu server and create a directory called ‘share’ using the ‘mkdir share’ command. We will then mount the directory to the Splunk download folder and install Splunk using the following commands: 
 <br/>
 <br/>
 <img src="https://i.imgur.com/Smrjm1o.png" alt="Mount Directory" height=85% width=85%/>
@@ -73,7 +73,7 @@ Once all three machines have been installed and configured, create a NAT network
 <img src="https://i.imgur.com/xcUBjLW.png" alt="Add Machines to Network" height=70% width=70%/>
 <br/>
 <br/>
-In the Windows client machine, navigate to your preferred web browser and type the IP address of the Splunk server with ':8000' appeneded - this is added because Splunk listens on port 8000. Proceed by logging into Splunk in another tab, and download Splunk Universal Forwarder which can be found by navigating <a href="https://www.splunk.com/en_us/download/universal-forwarder.html?utm_campaign=google_amer_en_search_brand&utm_source=google&utm_medium=cpc&utm_content=Uni_Forwarder_Demo&utm_term=splunk%20universal%20forwarder&device=c&_bt=471686934615&_bm=p&_bn=g&gad_source=1&gclid=Cj0KCQjwsuSzBhCLARIsAIcdLm4oJ2ShpMfo74w6W0IWSqvvsrLsYjWbWxiPR90PO0CMyaDZLkiOMV4aAqQcEALw_wcB">here</a>. While that is installing, navigate to the following link to download Sysmon on the Windows 10 client machine: https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon. 
+We are now ready to proceed with the installation. In the Windows client machine, navigate to your preferred web browser and type the IP address of the Splunk server with ':8000' appended (Splunk listens on port 8000). Proceed by logging into Splunk in another tab, and download Splunk Universal Forwarder which can be found by navigating <a href="https://www.splunk.com/en_us/download/universal-forwarder.html?utm_campaign=google_amer_en_search_brand&utm_source=google&utm_medium=cpc&utm_content=Uni_Forwarder_Demo&utm_term=splunk%20universal%20forwarder&device=c&_bt=471686934615&_bm=p&_bn=g&gad_source=1&gclid=Cj0KCQjwsuSzBhCLARIsAIcdLm4oJ2ShpMfo74w6W0IWSqvvsrLsYjWbWxiPR90PO0CMyaDZLkiOMV4aAqQcEALw_wcB">here</a>. While that is installing, navigate to the following link to download Sysmon on the Windows 10 client machine: https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon. 
 <br/>
 <br/>
 <img src="https://i.imgur.com/18cNhvX.png" alt="Splunk Login Page" height=70% width=70%/>
@@ -85,7 +85,7 @@ In the Windows client machine, navigate to your preferred web browser and type t
 <img src="https://i.imgur.com/MIvnOGN.png" alt="Install Sysmon" height=70% width=70%/>
 <br/>
 <br/>
-Once both Splunk Universal Forwarder and Sysmon have been installed, navigate to the following path in the system's 'C://' drive:  'Program Files > SplunkUniversalForwarder > etc > system > default'. The 'inputs.conf' file is located in this folder. This file must also be duplicated in the following path: 'Program Files > SplunkUniversalForwarder > etc > system > local'. To do this, run 'Notepad' as an administrator and create the 'inputs.conf' file with the following content, ensuring to save the file to the 'local' directory: 
+Once both Splunk Universal Forwarder and Sysmon have been installed, navigate to the following path in the system's 'C:' drive:  'Program Files > SplunkUniversalForwarder > etc > system > default'. The 'inputs.conf' file is located in this folder. This file must also be duplicated in the following path: 'Program Files > SplunkUniversalForwarder > etc > system > local'. To do this, run 'Notepad' as an administrator and create the 'inputs.conf' file with the following content, ensuring to save the file to the 'local' directory: 
  <br/>
  <br/>
  <img src="https://i.imgur.com/cHem22Y.png" alt="Inputs File"/>
