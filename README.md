@@ -112,7 +112,39 @@ Once this is configured, use the search ‘index=endpoint’ in Splunk to test t
  <img src="https://i.imgur.com/c75ddnz.png" alt="Splunk Confirmation"/>
 
 <h2>Install Active Directory:</h2>
-*In progress*
+ <p align="center">
+We will now install Active Directory on our Windows Server 2019 machine and promote it to Domain Controller. In Server Manager, navigate to 'Manager > Add Roles and Features'.  Add the ‘Active Directory Domain Services’ role, and proceed with the installation. 
+  <br/>
+  <br/>
+ <img src="https://i.imgur.com/vPUC0WW.png" alt="Add Active Directory Domain Services Role"/>
+ <br/>
+ <br/>
+Once installed, navigate back to Server Manager and click the flag icon in the top right corner. This will reveal the option to promote the server to a domain controller. We will then add a new forest and create a domain name: 
+  <br/>
+  <br/>
+ <img src="https://i.imgur.com/fWfCI8Z.png" alt="Promote Server to Domain Controller"/>
+ <br/>
+ <br/>
+ <img src="https://i.imgur.com/5a6bXVd.png" alt="Create Domain Name"/>
+ <br/>
+ <br/>
+Once installed, the machine will automatically restart. In Server Manager, navigate to ‘Tools > Active Directory Users and Computers’. For practice, we will create a new organizational unit and name it ‘IT’, as well as some users: 
+ <br/>
+ <br/>
+ <img src="https://i.imgur.com/zaEJktE.png" alt="Create OUs and Users"/>
+ <br/>
+ <br/>
+We will now login to our Active Directory server from our Windows 10 client machine as the user ‘Mary Kristel.’ In the Windows 10 machine, navigate to ‘System Properties > Computer Name > Change’. Select ‘Domain’ and enter the domain name of the Active Directory server. The system will restart, and we can now login using the credentials of the user 'Mary Kristel.' 
+ <br/>
+ <br/>
+ <img src="https://i.imgur.com/gKiLb6E.png" alt="Change Computer Name"/>
+ <br/>
+ <br/>
+We have successfully authenticated! 
+ <br/>
+ <br/>
+ <img src="https://i.imgur.com/915OIX6.png" alt="User Login"/>
+
 <h2>Key takeaways:</h2>
 *In progress*
 <p align="center">
