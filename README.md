@@ -146,7 +146,16 @@ We have successfully authenticated!
  <img src="https://i.imgur.com/915OIX6.png" alt="User Login"/>
 
 <h2>Key takeaways:</h2>
-*In progress*
+In this project, I built a virtualized network using Oracle’s VirtualBox to simulate a realistic IT environment. The network consisted of three primary components: a Windows client host, an Active Directory (AD) server, and a Splunk server. The setup was designed to mirror a typical small to medium-sized enterprise environment. The Windows client received its IP address dynamically via DHCP, whereas the AD and Splunk servers were assigned static IPs to ensure consistent communication across the network. This architecture enabled the implementation of robust security monitoring and log management through the use of Sysmon (System Monitor) and the Splunk Universal Forwarder.
+ <br/>
+ <br/>
+The goal of this project was to create a controlled environment where security events could be monitored and analyzed effectively. By simulating a NAT network with dedicated roles for each system, the project provided a practical setting for understanding how enterprise networks function and how security tools like Sysmon and Splunk can be used to enhance visibility into system activities. The AD server represented a central authority for user authentication and policy enforcement, which is crucial in managing and securing network resources. The Splunk server, serving as a centralized log repository and analysis platform, demonstrated how security events can be aggregated, analyzed, and acted upon in real-time.
+ <br/>
+ <br/>
+To build this environment, I configured Oracle VM VirtualBox to create three virtual machines: one for the Windows client, one for the AD server, and one for the Splunk server. Static IP addresses were assigned to the AD and Splunk servers to maintain their connectivity within the network, while the Windows client received a dynamic IP address. Sysmon was installed on both the Windows client and the AD server to capture detailed system activity logs, such as process creations, network connections, and file modifications. These logs were then forwarded to the Splunk server using the Splunk Universal Forwarder, a lightweight agent designed for log collection and transmission. The Splunk server aggregated these logs and provided tools for real-time monitoring and analysis, allowing for the detection of potential security threats and anomalies within the network.
+ <br/>
+ <br/>
+By installing and configuring this build, I gained practical experience in setting up and managing virtualized environments, configuring network settings, and deploying security monitoring tools. This project enhanced my understanding of how enterprise networks operate and how critical security tools can be integrated to improve network visibility and incident response capabilities.
 <p align="center">
 <!--
  ```diff
